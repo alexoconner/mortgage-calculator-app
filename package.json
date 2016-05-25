@@ -2,9 +2,15 @@
   "name": "mortgageCalculatorApp",
   "version": "0.0.1",
   "private": true,
+  "author": "Alexander Skrabl",
+  "license": "ISC",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
+  "bugs": {
+    "url": "https://github.com/alexoconner/mortgage-calculator-app/issues"
+  },
+  "homepage": "https://github.com/alexoconner/mortgage-calculator-app#readme",
   "dependencies": {
     "flux": "^2.1.1",
     "react": "^15.0.2",
