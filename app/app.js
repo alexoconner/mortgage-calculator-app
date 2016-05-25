@@ -4,7 +4,9 @@ import {
     StyleSheet,
     Text,
     View,
-    Dimensions
+    Dimensions,
+    StatusBar,
+    Navigator
 } from 'react-native';
 
 import Keypad from './components/keypad';
@@ -17,6 +19,10 @@ class App extends Component {
     render() {
         return (
             <View style={ styles.mainContainer }>
+                <StatusBar
+                    backgroundColor="transparent"
+                    barStyle="light-content"
+                />
                 <Text style={ styles.font }>Mortgage Calculator App { screenHeight * .6 }</Text>
                 <View style={ styles.keypadContainer }>
                     <Keypad />
