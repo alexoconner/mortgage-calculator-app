@@ -5,12 +5,20 @@ import {
     Text,
     View,
     Image,
+    TouchableHighlight,
     Dimensions
 } from 'react-native';
+
+import { EVENTS } from '../constants/constants';
+import appDispatcher from '../dispatcher/appDispatcher';
 
 class Keypad extends Component {
     constructor( props ) {
         super( props );
+    }
+
+    keyPress( action ) {
+        console.log( action );
     }
 
     render() {
@@ -21,48 +29,96 @@ class Keypad extends Component {
                     source={ require('../assets/bgKeyboard.png') }
                 />
                 <View style={ styles.numberRow }>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('1') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>1</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('2') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>2</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('3') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>3</Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
                 <View style={ styles.numberRow }>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('4') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>4</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('5') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>5</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('6') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>6</Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
                 <View style={ styles.numberRow }>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('7') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>7</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('8') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>8</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('9') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>9</Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
                 <View style={ styles.numberRow }>
-                    <View style={ [styles.numberBlock] }>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('delete') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>{ '<' }</Text>
-                    </View>
-                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('0') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>0</Text>
-                    </View>
-                    <View style={ [styles.numberBlock] }>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        onPress={ () => this.keyPress('.') }
+                        underlayColor="rgba(255, 255, 255, .4)"
+                    >
                         <Text style={ styles.font }>.</Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
             </View>
         )

@@ -10,6 +10,8 @@ import {
     Navigator
 } from 'react-native';
 
+import { EVENTS } from './constants/constants';
+import appDispatcher from './dispatcher/appDispatcher';
 import InputSlider from './components/inputSlider';
 import Keypad from './components/keypad';
 // import { MainBackground } from './components/backgrounds';
