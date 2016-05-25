@@ -14,29 +14,12 @@ import { EVENTS } from './constants/constants';
 import appDispatcher from './dispatcher/appDispatcher';
 import InputSlider from './components/inputSlider';
 import Keypad from './components/keypad';
+import Result from './components/result';
 // import { MainBackground } from './components/backgrounds';
 
 class App extends Component {
     constructor( props ) {
         super( props );
-
-        this.state = {
-            monthlyAmount: 0,
-            interestRate: 0,
-            mortgageYears: 0,
-            monthlyTotal: 0,
-            keypadValue: null
-        };
-    }
-
-    componentDidMount() {
-        appDispatcher.register( (payload) => {
-            if ( payload.actionType === EVENTS.UPDATE_NUMBER ) {
-                this.setState({
-                    keypadValue: payload.actionValue
-                });
-            }
-        });
     }
 
     render() {
@@ -51,8 +34,7 @@ class App extends Component {
                     source={ require('./assets/mainBackground.png') }
                 />
                 <View style={ styles.resultContainer }>
-                    <Text style={ [styles.font, styles.resultTitle ] }>Monthly Total</Text>
-                    <Text style={ [styles.font, styles.resultNumber ] }>1034.53</Text>
+                    <Result />
                 </View>
                 <View style={ styles.keypadContainer }>
                     <Keypad
@@ -60,9 +42,7 @@ class App extends Component {
                     />
                 </View>
                 <View style={ styles.inputSliderContainer }>
-                    <InputSlider
-                        keypadValue={ this.state.keypadValue }
-                    />
+                    <InputSlider />
                 </View>
             </View>
         )
@@ -91,15 +71,6 @@ const styles = StyleSheet.create({
         right: 0,
         top: 60,
         backgroundColor: 'transparent'
-    },
-    resultTitle: {
-        fontSize: 16,
-        textAlign: 'center',
-        marginBottom: 20
-    },
-    resultNumber: {
-        fontSize: 60,
-        textAlign: 'center'
     },
     inputSliderContainer: {
         position: 'absolute',

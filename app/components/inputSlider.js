@@ -17,7 +17,9 @@ class InputSlider extends Component {
         super( props );
 
         this.state = {
-            interestRateVal: ''
+            mortgageAmount: '200000',
+            interestRateVal: '',
+            mortgageYears: '25'
         };
     }
 
@@ -45,6 +47,13 @@ class InputSlider extends Component {
         });
     }
 
+    componentDidUpdate() {
+        appDispatcher.dispatch({
+            actionType: EVENTS.UPDATE_CALC_VALUES,
+            actionValue: this.state
+        });
+    }
+
     render() {
 
         return (
@@ -53,7 +62,9 @@ class InputSlider extends Component {
                     <View style={ styles.sliderInner }>
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage amount</Text>
-                            <Text style={ [styles.font, styles.sliderItemValue] }>200,000</Text>
+                            <Text style={ [styles.font, styles.sliderItemValue] }>
+                                { this.state.mortgageAmount }
+                            </Text>
                         </View>
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Interest rate (%)</Text>
@@ -63,7 +74,9 @@ class InputSlider extends Component {
                         </View>
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage Years</Text>
-                            <Text style={ [styles.font, styles.sliderItemValue] }>25</Text>
+                            <Text style={ [styles.font, styles.sliderItemValue] }>
+                                { this.state.mortgageYears }
+                            </Text>
                         </View>
                     </View>
                 </View>
