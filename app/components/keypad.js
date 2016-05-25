@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     },
     font: {
         color: '#FFFFFF',
+        fontWeight: '200',
         fontSize: 40,
         textAlign: 'center'
     }

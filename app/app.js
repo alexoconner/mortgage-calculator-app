@@ -10,6 +10,7 @@ import {
     Navigator
 } from 'react-native';
 
+import InputSlider from './components/inputSlider';
 import Keypad from './components/keypad';
 // import { MainBackground } from './components/backgrounds';
 
@@ -33,6 +34,9 @@ class App extends Component {
                 <View style={ styles.keypadContainer }>
                     <Keypad />
                 </View>
+                <View style={ styles.inputSliderContainer }>
+                    <InputSlider />
+                </View>
             </View>
         )
     }
@@ -51,7 +55,14 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         top: 0,
-        resizeMode: 'contain'
+        resizeMode: 'cover'
+    },
+    inputSliderContainer: {
+        position: 'absolute',
+        bottom: ( screenHeight * .53 ) - 2,
+        left: 0,
+        right: 0,
+        height: 105,
     },
     keypadContainer: {
         position: 'absolute',
@@ -59,7 +70,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: '#FFFFFF',
-        height: screenHeight * .54
+        height: screenHeight * .53
     },
     font: {
         color: '#FFFFFF'
