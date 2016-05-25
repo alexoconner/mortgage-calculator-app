@@ -99,7 +99,7 @@ class Keypad extends Component {
                 </View>
                 <View style={ styles.numberRow }>
                     <TouchableHighlight
-                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        style={ [styles.numberBlock] }
                         onPress={ () => this.keyPress('delete') }
                         underlayColor={ keyPressUnderlayColor }
                     >
@@ -113,7 +113,7 @@ class Keypad extends Component {
                         <Text style={ styles.font }>0</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
-                        style={ [styles.numberBlock, styles.highlightBlock] }
+                        style={ [styles.numberBlock] }
                         onPress={ () => this.keyPress('.') }
                         underlayColor={ keyPressUnderlayColor }
                     >
