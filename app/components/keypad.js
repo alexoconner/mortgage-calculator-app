@@ -32,21 +32,21 @@ class Keypad extends Component {
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('1') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>1</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('2') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>2</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('3') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>3</Text>
                     </TouchableHighlight>
@@ -55,21 +55,21 @@ class Keypad extends Component {
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('4') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>4</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('5') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>5</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('6') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>6</Text>
                     </TouchableHighlight>
@@ -78,21 +78,21 @@ class Keypad extends Component {
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('7') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>7</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('8') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>8</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('9') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>9</Text>
                     </TouchableHighlight>
@@ -101,21 +101,21 @@ class Keypad extends Component {
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('delete') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>{ '<' }</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('0') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>0</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={ [styles.numberBlock, styles.highlightBlock] }
                         onPress={ () => this.keyPress('.') }
-                        underlayColor="rgba(255, 255, 255, .4)"
+                        underlayColor={ keyPressUnderlayColor }
                     >
                         <Text style={ styles.font }>.</Text>
                     </TouchableHighlight>
@@ -126,19 +126,18 @@ class Keypad extends Component {
 }
 
 let screenWidth = Dimensions.get("window").width;
+const keyPressUnderlayColor = 'rgba(255, 255, 255, .4)';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         left: 0,
         right: 0,
-        alignItems: 'center',
         justifyContent: 'center',
         alignItems: 'stretch'
     },
     numberRow: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'center',
         alignItems: 'stretch'
     },

@@ -19,7 +19,20 @@ class InputSlider extends Component {
         return (
             <View style={ styles.container }>
                 <View style={ styles.slider }>
-                    <Text style={ styles.font }></Text>
+                    <View style={ styles.sliderInner }>
+                        <View style={ styles.sliderItem }>
+                            <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage amount</Text>
+                            <Text style={ [styles.font, styles.sliderItemValue] }>200,000</Text>
+                        </View>
+                        <View style={ styles.sliderItem }>
+                            <Text style={ [styles.font, styles.sliderItemTitle] }>Interest rate (%)</Text>
+                            <Text style={ [styles.font, styles.sliderItemValue] }>2.6</Text>
+                        </View>
+                        <View style={ styles.sliderItem }>
+                            <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage Years</Text>
+                            <Text style={ [styles.font, styles.sliderItemValue] }>25</Text>
+                        </View>
+                    </View>
                 </View>
                 <Image
                     style={ styles.background }
@@ -36,6 +49,7 @@ class InputSlider extends Component {
 }
 
 let screenWidth = Dimensions.get("window").width;
+let sliderItemWidth = ( screenWidth / 3 ) + 44;
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
@@ -51,8 +65,26 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 2,
         top: 0,
-        backgroundColor: 'rgba(0, 0, 0, .1)'
-        // backgroundColor: '#FFFFFF'
+        backgroundColor: 'rgba(0, 0, 0, .1)',
+        alignItems: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    sliderInner: {
+        width: sliderItemWidth * 3,
+        flexDirection: 'row',
+        alignItems: 'stretch'
+    },
+    sliderItem: {
+        width: sliderItemWidth
+    },
+    sliderItemTitle: {
+        fontSize: 16,
+        textAlign: 'center'
+    },
+    sliderItemValue: {
+        fontSize: 35,
+        textAlign: 'center'
     },
     background: {
         position: 'absolute',
@@ -66,7 +98,7 @@ const styles = StyleSheet.create({
     },
     font: {
         color: '#FFFFFF',
-        fontSize: 40,
+        fontWeight: '300',
         textAlign: 'center'
     }
 })
