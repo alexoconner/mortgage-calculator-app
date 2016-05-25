@@ -32,7 +32,9 @@ class App extends Component {
                     source={ require('./assets/mainBackground.png') }
                 />
                 <View style={ styles.keypadContainer }>
-                    <Keypad />
+                    <Keypad
+                        height={ keyPadHeight }
+                    />
                 </View>
                 <View style={ styles.inputSliderContainer }>
                     <InputSlider />
@@ -43,6 +45,7 @@ class App extends Component {
 }
 
 let screenHeight = Dimensions.get("window").height;
+const keyPadHeight = 352;
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     },
     inputSliderContainer: {
         position: 'absolute',
-        bottom: ( screenHeight * .53 ) - 2,
+        bottom: keyPadHeight - 2,
         left: 0,
         right: 0,
         height: 105,
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: '#FFFFFF',
-        height: screenHeight * .53
+        height: keyPadHeight
     },
     font: {
         color: '#FFFFFF'

@@ -4,6 +4,7 @@ import {
     StyleSheet,
     Text,
     View,
+    Image,
     Dimensions
 } from 'react-native';
 
@@ -15,6 +16,10 @@ class Keypad extends Component {
     render() {
         return (
             <View style={ styles.container }>
+                <Image
+                    style={ [styles.background, { height: this.props.height }] }
+                    source={ require('../assets/bgKeyboard.png') }
+                />
                 <View style={ styles.numberRow }>
                     <View style={ [styles.numberBlock, styles.highlightBlock] }>
                         <Text style={ styles.font }>1</Text>
@@ -72,7 +77,6 @@ const styles = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#9C84A7',
         alignItems: 'stretch'
     },
     numberRow: {
@@ -85,10 +89,20 @@ const styles = StyleSheet.create({
     numberBlock: {
         width: screenWidth * .333,
         justifyContent: 'center',
+        backgroundColor: 'transparent',
         margin: 1
     },
     highlightBlock: {
-        backgroundColor: '#D8CEDE'
+        backgroundColor: 'rgba(216, 216, 216, .1)'
+    },
+    background: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0,
+        // width: screenWidth,
+        resizeMode: 'cover'
     },
     font: {
         color: '#FFFFFF',
