@@ -17,8 +17,20 @@ class Keypad extends Component {
         super( props );
     }
 
-    keyPress( action ) {
-        console.log( action );
+    keyPress( data ) {
+        switch ( data ) {
+            case 'delete':
+                appDispatcher.dispatch({
+                    actionType: EVENTS.DELETE_NUMBER,
+                    actionValue: data
+                });
+                break;
+            default:
+                appDispatcher.dispatch({
+                    actionType: EVENTS.UPDATE_NUMBER,
+                    actionValue: data
+                });
+        }
     }
 
     render() {

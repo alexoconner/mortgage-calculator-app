@@ -8,14 +8,45 @@ import {
     Dimensions
 } from 'react-native';
 
+import { EVENTS } from '../constants/constants';
+import appDispatcher from '../dispatcher/appDispatcher';
 import { SliderBackground } from './backgrounds';
 
 class InputSlider extends Component {
     constructor( props ) {
         super( props );
+
+        this.state = {
+            interestRateVal: ''
+        };
+    }
+
+    componentDidMount() {
+        appDispatcher.register( (payload) => {
+            if ( payload.actionType === EVENTS.UPDATE_NUMBER ) {
+                this.setState({
+                    interestRateVal: this.state.interestRateVal + payload.actionValue
+                });
+            }
+            if ( payload.actionType === EVENTS.DELETE_NUMBER ) {
+                let newNumber;
+
+                if ( this.state.interestRateVal.charAt( this.state.interestRateVal.length - 2 ) === '.' ) {
+                    newNumber = this.state.interestRateVal.substring( 0, this.state.interestRateVal.length - 2 )
+                }
+                else {
+                    newNumber = this.state.interestRateVal.substring( 0, this.state.interestRateVal.length - 1 )
+                }
+
+                this.setState({
+                    interestRateVal: newNumber
+                });
+            }
+        });
     }
 
     render() {
+
         return (
             <View style={ styles.container }>
                 <View style={ styles.slider }>
@@ -26,7 +57,9 @@ class InputSlider extends Component {
                         </View>
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Interest rate (%)</Text>
-                            <Text style={ [styles.font, styles.sliderItemValue] }>2.6</Text>
+                            <Text style={ [styles.font, styles.sliderItemValue] }>
+                                { this.state.interestRateVal }
+                            </Text>
                         </View>
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage Years</Text>
@@ -76,7 +109,9 @@ const styles = StyleSheet.create({
         alignItems: 'stretch'
     },
     sliderItem: {
-        width: sliderItemWidth
+        width: sliderItemWidth,
+        overflow: 'hidden',
+        flexWrap: 'nowrap'
     },
     sliderItemTitle: {
         fontSize: 16,
@@ -84,7 +119,8 @@ const styles = StyleSheet.create({
     },
     sliderItemValue: {
         fontSize: 35,
-        textAlign: 'center'
+        textAlign: 'center',
+        overflow: 'hidden'
     },
     background: {
         position: 'absolute',

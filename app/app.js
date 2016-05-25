@@ -19,6 +19,24 @@ import Keypad from './components/keypad';
 class App extends Component {
     constructor( props ) {
         super( props );
+
+        this.state = {
+            monthlyAmount: 0,
+            interestRate: 0,
+            mortgageYears: 0,
+            monthlyTotal: 0,
+            keypadValue: null
+        };
+    }
+
+    componentDidMount() {
+        appDispatcher.register( (payload) => {
+            if ( payload.actionType === EVENTS.UPDATE_NUMBER ) {
+                this.setState({
+                    keypadValue: payload.actionValue
+                });
+            }
+        });
     }
 
     render() {
@@ -28,7 +46,6 @@ class App extends Component {
                     backgroundColor="transparent"
                     barStyle="light-content"
                 />
-                <Text style={ styles.font }>Mortgage Calculator App { screenHeight * .6 }</Text>
                 <Image
                     style={ styles.mainBackground }
                     source={ require('./assets/mainBackground.png') }
@@ -43,7 +60,9 @@ class App extends Component {
                     />
                 </View>
                 <View style={ styles.inputSliderContainer }>
-                    <InputSlider />
+                    <InputSlider
+                        keypadValue={ this.state.keypadValue }
+                    />
                 </View>
             </View>
         )
