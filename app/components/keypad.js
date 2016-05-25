@@ -27,19 +27,37 @@ class Keypad extends Component {
                     </View>
                 </View>
                 <View style={ styles.numberRow }>
-                    <Text style={ [styles.font, styles.numberBlock] }>4</Text>
-                    <Text style={ [styles.font, styles.numberBlock] }>5</Text>
-                    <Text style={ [styles.font, styles.numberBlock] }>6</Text>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>4</Text>
+                    </View>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>5</Text>
+                    </View>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>6</Text>
+                    </View>
                 </View>
                 <View style={ styles.numberRow }>
-                    <Text style={ [styles.font, styles.numberBlock] }>7</Text>
-                    <Text style={ [styles.font, styles.numberBlock] }>8</Text>
-                    <Text style={ [styles.font, styles.numberBlock] }>9</Text>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>7</Text>
+                    </View>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>8</Text>
+                    </View>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>9</Text>
+                    </View>
                 </View>
                 <View style={ styles.numberRow }>
-                    <Text style={ [styles.font, styles.numberBlock] }>{ '<' }</Text>
-                    <Text style={ [styles.font, styles.numberBlock] }>0</Text>
-                    <Text style={ [styles.font, styles.numberBlock] }>.</Text>
+                    <View style={ [styles.numberBlock] }>
+                        <Text style={ styles.font }>{ '<' }</Text>
+                    </View>
+                    <View style={ [styles.numberBlock, styles.highlightBlock] }>
+                        <Text style={ styles.font }>0</Text>
+                    </View>
+                    <View style={ [styles.numberBlock] }>
+                        <Text style={ styles.font }>.</Text>
+                    </View>
                 </View>
             </View>
         )
@@ -54,16 +72,19 @@ const styles = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#9C84A7'
+        backgroundColor: '#9C84A7',
+        alignItems: 'stretch'
     },
     numberRow: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'stretch'
     },
     numberBlock: {
-        width: screenWidth * .3,
+        width: screenWidth * .333,
+        justifyContent: 'center',
         margin: 1
     },
     highlightBlock: {

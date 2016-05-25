@@ -4,12 +4,14 @@ import {
     StyleSheet,
     Text,
     View,
+    Image,
     Dimensions,
     StatusBar,
     Navigator
 } from 'react-native';
 
 import Keypad from './components/keypad';
+// import { MainBackground } from './components/backgrounds';
 
 class App extends Component {
     constructor( props ) {
@@ -24,6 +26,10 @@ class App extends Component {
                     barStyle="light-content"
                 />
                 <Text style={ styles.font }>Mortgage Calculator App { screenHeight * .6 }</Text>
+                <Image
+                    style={ styles.mainBackground }
+                    source={ require('./assets/mainBackground.png') }
+                />
                 <View style={ styles.keypadContainer }>
                     <Keypad />
                 </View>
@@ -37,8 +43,15 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#5B1A53',
-        paddingTop: 20
+        backgroundColor: '#5B1A53'
+    },
+    mainBackground: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0,
+        resizeMode: 'contain'
     },
     keypadContainer: {
         position: 'absolute',
@@ -46,7 +59,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: '#FFFFFF',
-        height: screenHeight * .6
+        height: screenHeight * .54
     },
     font: {
         color: '#FFFFFF'
