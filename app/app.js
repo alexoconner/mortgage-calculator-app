@@ -31,6 +31,10 @@ class App extends Component {
                     style={ styles.mainBackground }
                     source={ require('./assets/mainBackground.png') }
                 />
+                <View style={ styles.resultContainer }>
+                    <Text style={ [styles.font, styles.resultTitle ] }>Monthly Total</Text>
+                    <Text style={ [styles.font, styles.resultNumber ] }>1034.53</Text>
+                </View>
                 <View style={ styles.keypadContainer }>
                     <Keypad
                         height={ keyPadHeight }
@@ -46,11 +50,11 @@ class App extends Component {
 
 let screenHeight = Dimensions.get("window").height;
 const keyPadHeight = 352;
+const sliderHeight = 105;
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#5B1A53'
+        alignItems: 'center'
     },
     mainBackground: {
         position: 'absolute',
@@ -60,12 +64,28 @@ const styles = StyleSheet.create({
         top: 0,
         resizeMode: 'cover'
     },
+    resultContainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 60,
+        backgroundColor: 'transparent'
+    },
+    resultTitle: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    resultNumber: {
+        fontSize: 60,
+        textAlign: 'center'
+    },
     inputSliderContainer: {
         position: 'absolute',
         bottom: keyPadHeight - 2,
         left: 0,
         right: 0,
-        height: 105,
+        height: sliderHeight,
     },
     keypadContainer: {
         position: 'absolute',
@@ -76,7 +96,8 @@ const styles = StyleSheet.create({
         height: keyPadHeight
     },
     font: {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        fontWeight: '300'
     }
 })
 

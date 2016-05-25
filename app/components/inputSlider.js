@@ -19,7 +19,7 @@ class InputSlider extends Component {
         return (
             <View style={ styles.container }>
                 <View style={ styles.slider }>
-                    <Text style={ styles.font }>Input Slider</Text>
+                    <Text style={ styles.font }></Text>
                 </View>
                 <Image
                     style={ styles.background }
