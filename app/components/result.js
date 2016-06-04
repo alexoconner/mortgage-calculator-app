@@ -44,7 +44,7 @@ class Result extends Component {
 
         // monthlyTotal = 200000 * (2.2/(12*100)/(1-(1+2.2/(12*100)) ** -(25*12)) )
         monthlyTotal = mA * ( iR / ( 12 * 100 ) ); // / Math.pow ( ( 1 - ( 1 + iR / ( 12 * 100 ) ) ), -( mY * 12 ) )
-        //let right = -( mY * 12 );
+        // let right = -( mY * 12 );
         // monthlyTotal = Math.pow ( left, right );
         // monthlyTotal = mortgageAmount + ( mortgageAmount * ( interestRateVal / 100 ) );
         monthlyTotal = Math.round( monthlyTotal * 100 ) / 100;

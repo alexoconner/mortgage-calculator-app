@@ -5,7 +5,8 @@ import {
     Text,
     View,
     Image,
-    Dimensions
+    Dimensions,
+    Animated
 } from 'react-native';
 
 import { EVENTS } from '../constants/constants';
@@ -19,11 +20,17 @@ class InputSlider extends Component {
         this.state = {
             mortgageAmount: '200000',
             interestRateVal: '',
-            mortgageYears: '25'
+            mortgageYears: '25',
+            sliderPos: new Animated.Value(0)
         };
     }
 
     componentDidMount() {
+        /**
+         * event handling
+         * @param  {[type]} (payload [description]
+         * @return {[type]}          [description]
+         */
         appDispatcher.register( (payload) => {
             if ( payload.actionType === EVENTS.UPDATE_NUMBER ) {
                 this.setState({
@@ -45,8 +52,24 @@ class InputSlider extends Component {
                 });
             }
         });
+
+        /**
+         * testing animations
+         */
+         this.state.sliderPos.setValue( 0 );
+            Animated.timing(
+               this.state.sliderPos,
+               {
+                   toValue: 60,
+                   friction: 1
+               }
+            ).start();
     }
 
+    /**
+     * component updates
+     * @return {[type]} [description]
+     */
     componentDidUpdate() {
         appDispatcher.dispatch({
             actionType: EVENTS.UPDATE_CALC_VALUES,
@@ -59,7 +82,12 @@ class InputSlider extends Component {
         return (
             <View style={ styles.container }>
                 <View style={ styles.slider }>
-                    <View style={ styles.sliderInner }>
+                    <Animated.View style={ [
+                        styles.sliderInner,
+                        {
+                            left: this.state.sliderPos
+                        }
+                    ]}>
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage amount</Text>
                             <Text style={ [styles.font, styles.sliderItemValue] }>
@@ -78,7 +106,7 @@ class InputSlider extends Component {
                                 { this.state.mortgageYears }
                             </Text>
                         </View>
-                    </View>
+                    </Animated.View>
                 </View>
                 <Image
                     style={ styles.background }
