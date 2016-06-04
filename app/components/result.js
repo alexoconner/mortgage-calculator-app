@@ -49,7 +49,7 @@ class Result extends Component {
         // monthlyTotal = mortgageAmount + ( mortgageAmount * ( interestRateVal / 100 ) );
         monthlyTotal = Math.round( monthlyTotal * 100 ) / 100;
 
-        return monthlyTotal;
+        return isNaN(monthlyTotal) === true ? '---' : monthlyTotal;
     }
 
     render() {
