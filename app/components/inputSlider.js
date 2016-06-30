@@ -6,7 +6,8 @@ import {
     View,
     Image,
     Dimensions,
-    Animated
+    Animated,
+    TouchableHighlight
 } from 'react-native';
 
 import { EVENTS } from '../constants/constants';
@@ -56,14 +57,14 @@ class InputSlider extends Component {
         /**
          * testing animations
          */
-         this.state.sliderPos.setValue( 0 );
-            Animated.timing(
-               this.state.sliderPos,
-               {
-                   toValue: 60,
-                   friction: 1
-               }
-            ).start();
+        //  this.state.sliderPos.setValue( 0 );
+        //     Animated.timing(
+        //        this.state.sliderPos,
+        //        {
+        //            toValue: 60,
+        //            friction: 1
+        //        }
+        //     ).start();
     }
 
     /**
@@ -75,6 +76,17 @@ class InputSlider extends Component {
             actionType: EVENTS.UPDATE_CALC_VALUES,
             actionValue: this.state
         });
+    }
+
+    inputSlide(e) {
+        console.log(e);
+        // Animated.timing(
+        //    this.state.sliderPos,
+        //    {
+        //        toValue: 60,
+        //        friction: 1
+        //    }
+        // ).start();
     }
 
     render() {
@@ -108,10 +120,14 @@ class InputSlider extends Component {
                         </View>
                     </Animated.View>
                 </View>
-                <Image
-                    style={ styles.background }
-                    source={ require('../assets/inputBackground.png') }
-                />
+                <View
+                    onResponderMove={ () => this.inputSlide() }
+                >
+                    <Image
+                        style={ styles.background }
+                        source={ require('../assets/inputBackground.png') }
+                    />
+                </View>
                 {/*<SliderBackground
                     style={ styles.background }
                     width={ 200 }
