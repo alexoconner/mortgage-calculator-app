@@ -24,6 +24,8 @@ class InputSlider extends Component {
             mortgageYears: '25',
             sliderPos: new Animated.Value(0)
         };
+
+        this.fingerPos = 0;
     }
 
     componentDidMount() {
@@ -79,7 +81,30 @@ class InputSlider extends Component {
     }
 
     inputSlide(e) {
-        console.log(e);
+        let locationX = e.nativeEvent.locationX;
+
+        if ( locationX < this.fingerPos ) {
+            console.log('swiping left');
+            Animated.timing(
+               this.state.sliderPos,
+               {
+                   toValue: 0,
+                   friction: 1
+               }
+            ).start();
+        }
+        if ( locationX > this.fingerPos ) {
+            console.log('swiping right');
+            Animated.timing(
+               this.state.sliderPos,
+               {
+                   toValue: 200,
+                   friction: 1
+               }
+            ).start();
+        }
+
+        this.fingerPos = e.nativeEvent.locationX;
         // Animated.timing(
         //    this.state.sliderPos,
         //    {
@@ -120,19 +145,12 @@ class InputSlider extends Component {
                         </View>
                     </Animated.View>
                 </View>
-                <View
-                    onResponderMove={ () => this.inputSlide() }
-                >
-                    <Image
-                        style={ styles.background }
-                        source={ require('../assets/inputBackground.png') }
-                    />
-                </View>
-                {/*<SliderBackground
+                <Image
+                    onMoveShouldSetResponder={ () => { return true } }
+                    onResponderMove={ (e) => this.inputSlide(e) }
                     style={ styles.background }
-                    width={ 200 }
-                    height={ 100 }
-                />*/}
+                    source={ require('../assets/inputBackground.png') }
+                />
             </View>
         )
     }
