@@ -158,6 +158,13 @@ class InputSlider extends Component {
 
 let screenWidth = Dimensions.get("window").width;
 let sliderItemWidth = ( screenWidth / 3 ) + 44;
+let sliderCenter = ( sliderItemWidth * 3 ) / 2;
+let sliderItemOnePos = sliderCenter - ( sliderItemWidth / 2 ) + sliderItemWidth;
+let sliderItemTwoPos = sliderCenter - sliderItemWidth / 2;
+let sliderItemThreePos = sliderCenter - ( sliderItemWidth / 2 ) - sliderItemWidth;
+
+console.log(sliderItemOnePos, sliderItemTwoPos, sliderItemThreePos);
+
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
