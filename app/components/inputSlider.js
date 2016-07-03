@@ -22,7 +22,7 @@ class InputSlider extends Component {
             mortgageAmount: '200000',
             interestRateVal: '',
             mortgageYears: '25',
-            sliderPos: new Animated.Value(0)
+            sliderPos: new Animated.Value(sliderItemTwoPos)
         };
 
         this.fingerPos = 0;
@@ -88,7 +88,7 @@ class InputSlider extends Component {
             Animated.timing(
                this.state.sliderPos,
                {
-                   toValue: 0,
+                   toValue: sliderItemThreePos,
                    friction: 1
                }
             ).start();
@@ -98,7 +98,7 @@ class InputSlider extends Component {
             Animated.timing(
                this.state.sliderPos,
                {
-                   toValue: 200,
+                   toValue: sliderItemOnePos,
                    friction: 1
                }
             ).start();
@@ -157,13 +157,14 @@ class InputSlider extends Component {
 }
 
 let screenWidth = Dimensions.get("window").width;
+let screenCenter = screenWidth / 2;
 let sliderItemWidth = ( screenWidth / 3 ) + 44;
 let sliderCenter = ( sliderItemWidth * 3 ) / 2;
-let sliderItemOnePos = sliderCenter - ( sliderItemWidth / 2 ) + sliderItemWidth;
-let sliderItemTwoPos = sliderCenter - sliderItemWidth / 2;
-let sliderItemThreePos = sliderCenter - ( sliderItemWidth / 2 ) - sliderItemWidth;
+let sliderItemOnePos = screenCenter - ( sliderCenter - sliderItemWidth );
+let sliderItemTwoPos = screenCenter - sliderCenter;
+let sliderItemThreePos = screenCenter - ( sliderCenter + sliderItemWidth );
 
-console.log(sliderItemOnePos, sliderItemTwoPos, sliderItemThreePos);
+console.log(screenWidth / 2, sliderCenter, sliderItemTwoPos);
 
 const styles = StyleSheet.create({
     container: {
@@ -182,7 +183,6 @@ const styles = StyleSheet.create({
         top: 0,
         backgroundColor: 'rgba(0, 0, 0, .1)',
         alignItems: 'stretch',
-        alignItems: 'center',
         justifyContent: 'center'
     },
     sliderInner: {
