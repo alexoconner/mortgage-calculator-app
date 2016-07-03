@@ -10,7 +10,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-import { EVENTS } from '../constants/constants';
+import { EVENTS, SLIDER_STATES } from '../constants/constants';
 import appDispatcher from '../dispatcher/appDispatcher';
 import { SliderBackground } from './backgrounds';
 
@@ -22,7 +22,8 @@ class InputSlider extends Component {
             mortgageAmount: '200000',
             interestRateVal: '',
             mortgageYears: '25',
-            sliderPos: new Animated.Value(sliderItemTwoPos)
+            sliderPos: new Animated.Value(sliderItemTwoPos),
+            currentSlide: SLIDER_STATES.MORTGAGE_AMOUNT
         };
 
         this.fingerPos = 0;
@@ -55,18 +56,6 @@ class InputSlider extends Component {
                 });
             }
         });
-
-        /**
-         * testing animations
-         */
-        //  this.state.sliderPos.setValue( 0 );
-        //     Animated.timing(
-        //        this.state.sliderPos,
-        //        {
-        //            toValue: 60,
-        //            friction: 1
-        //        }
-        //     ).start();
     }
 
     /**
@@ -82,36 +71,60 @@ class InputSlider extends Component {
 
     inputSlide(e) {
         let locationX = e.nativeEvent.locationX;
+        console.log(this.state.currentSlide);
+        let toLeft = 0;
+        let toRight = 0;
+        let toLeftSlide = '';
+        let toRightSlide = '';
+        switch ( this.state.currentSlide ) {
+            case 'mortgageAmount':
+                toLeft = sliderItemOnePos;
+                toRight = sliderItemTwoPos;
+                toLeftSlide = SLIDER_STATES.MORTGAGE_AMOUNT;
+                toRightSlide = SLIDER_STATES.INTEREST_RATE;
+                break;
+            case 'interestRate':
+                toLeft = sliderItemOnePos;
+                toRight = sliderItemThreePos;
+                toLeftSlide = SLIDER_STATES.MORTGAGE_AMOUNT;
+                toRightSlide = SLIDER_STATES.MORTGAGE_YEARS;
+                break;
+            case 'mortgageYears':
+                toLeft = sliderItemTwoPos;
+                toRight = sliderItemThreePos;
+                toLeftSlide = SLIDER_STATES.INTEREST_RATE;
+                toRightSlide = SLIDER_STATES.MORTGAGE_YEARS;
+                break;
+        }
 
         if ( locationX < this.fingerPos ) {
             console.log('swiping left');
             Animated.timing(
                this.state.sliderPos,
                {
-                   toValue: sliderItemThreePos,
+                   toValue: toRight,
                    friction: 1
                }
             ).start();
+            this.setState({
+                currentSlide: toRightSlide
+            });
         }
         if ( locationX > this.fingerPos ) {
             console.log('swiping right');
             Animated.timing(
                this.state.sliderPos,
                {
-                   toValue: sliderItemOnePos,
+                   toValue: toLeft,
                    friction: 1
                }
             ).start();
+            this.setState({
+                currentSlide: toLeftSlide
+            });
         }
 
         this.fingerPos = e.nativeEvent.locationX;
-        // Animated.timing(
-        //    this.state.sliderPos,
-        //    {
-        //        toValue: 60,
-        //        friction: 1
-        //    }
-        // ).start();
     }
 
     render() {
@@ -126,7 +139,7 @@ class InputSlider extends Component {
                         }
                     ]}>
                         <View style={ styles.sliderItem }>
-                            <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage amount</Text>
+                            <Text style={ [styles.font, styles.sliderItemTitle] }>Mortgage amount</Text>
                             <Text style={ [styles.font, styles.sliderItemValue] }>
                                 { this.state.mortgageAmount }
                             </Text>
@@ -138,7 +151,7 @@ class InputSlider extends Component {
                             </Text>
                         </View>
                         <View style={ styles.sliderItem }>
-                            <Text style={ [styles.font, styles.sliderItemTitle] }>Mortage Years</Text>
+                            <Text style={ [styles.font, styles.sliderItemTitle] }>Mortgage Years</Text>
                             <Text style={ [styles.font, styles.sliderItemValue] }>
                                 { this.state.mortgageYears }
                             </Text>
