@@ -71,7 +71,7 @@ class InputSlider extends Component {
 
     inputSlide(e) {
         let locationX = e.nativeEvent.locationX;
-        console.log(this.state.currentSlide);
+
         let toLeft = 0;
         let toRight = 0;
         let toLeftSlide = '';
@@ -97,32 +97,34 @@ class InputSlider extends Component {
                 break;
         }
 
-        if ( locationX < this.fingerPos ) {
-            console.log('swiping left');
-            Animated.timing(
-               this.state.sliderPos,
-               {
-                   toValue: toRight,
-                   friction: 1
-               }
-            ).start();
-            this.setState({
-                currentSlide: toRightSlide
-            });
-        }
-        if ( locationX > this.fingerPos ) {
-            console.log('swiping right');
-            Animated.timing(
-               this.state.sliderPos,
-               {
-                   toValue: toLeft,
-                   friction: 1
-               }
-            ).start();
-            this.setState({
-                currentSlide: toLeftSlide
-            });
-        }
+        setTimeout( () => {
+            if ( locationX < this.fingerPos ) {
+                console.log('swiping left');
+                Animated.timing(
+                   this.state.sliderPos,
+                   {
+                       toValue: toLeft,
+                       friction: 1
+                   }
+                ).start();
+                this.setState({
+                    currentSlide: toLeftSlide
+                });
+            }
+            if ( locationX > this.fingerPos ) {
+                console.log('swiping right');
+                Animated.timing(
+                   this.state.sliderPos,
+                   {
+                       toValue: toRight,
+                       friction: 1
+                   }
+                ).start();
+                this.setState({
+                    currentSlide: toRightSlide
+                });
+            }
+        }, 300);
 
         this.fingerPos = e.nativeEvent.locationX;
     }
