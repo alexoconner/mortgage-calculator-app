@@ -36,10 +36,10 @@ class Result extends Component {
      * @return {[type]} [string]
      */
     calculateMonthlyTotal( values ) {
-        let { mortgageAmount, interestRateVal, mortgageYears } = values;
+        let { mortgageAmount, interestRate, mortgageYears } = values;
         let monthlyTotal;
         let mA = parseFloat( mortgageAmount );
-        let iR = parseFloat( interestRateVal );
+        let iR = parseFloat( interestRate );
         let mY = parseFloat( mortgageYears );
 
         // monthlyTotal = 200000 * (2.2/(12*100)/(1-(1+2.2/(12*100)) ** -(25*12)) )

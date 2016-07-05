@@ -19,11 +19,11 @@ class InputSlider extends Component {
         super( props );
 
         this.state = {
-            mortgageAmount: '200000',
-            interestRateVal: '',
-            mortgageYears: '25',
+            mortgageAmount: '',
+            interestRate: '',
+            mortgageYears: '',
             sliderPos: new Animated.Value(sliderItemTwoPos),
-            currentSlide: SLIDER_STATES.MORTGAGE_AMOUNT
+            currentSlide: SLIDER_STATES.INTEREST_RATE
         };
 
         this.fingerPos = 0;
@@ -38,21 +38,21 @@ class InputSlider extends Component {
         appDispatcher.register( (payload) => {
             if ( payload.actionType === EVENTS.UPDATE_NUMBER ) {
                 this.setState({
-                    interestRateVal: this.state.interestRateVal + payload.actionValue
+                    [this.state.currentSlide]: this.state[this.state.currentSlide] + payload.actionValue
                 });
             }
             if ( payload.actionType === EVENTS.DELETE_NUMBER ) {
                 let newNumber;
 
-                if ( this.state.interestRateVal.charAt( this.state.interestRateVal.length - 2 ) === '.' ) {
-                    newNumber = this.state.interestRateVal.substring( 0, this.state.interestRateVal.length - 2 )
+                if ( this.state[this.state.currentSlide].charAt( this.state[this.state.currentSlide].length - 2 ) === '.' ) {
+                    newNumber = this.state[this.state.currentSlide].substring( 0, this.state[this.state.currentSlide].length - 2 )
                 }
                 else {
-                    newNumber = this.state.interestRateVal.substring( 0, this.state.interestRateVal.length - 1 )
+                    newNumber = this.state[this.state.currentSlide].substring( 0, this.state[this.state.currentSlide].length - 1 )
                 }
 
                 this.setState({
-                    interestRateVal: newNumber
+                    [this.state.currentSlide]: newNumber
                 });
             }
         });
@@ -149,7 +149,7 @@ class InputSlider extends Component {
                         <View style={ styles.sliderItem }>
                             <Text style={ [styles.font, styles.sliderItemTitle] }>Interest rate (%)</Text>
                             <Text style={ [styles.font, styles.sliderItemValue] }>
-                                { this.state.interestRateVal }
+                                { this.state.interestRate }
                             </Text>
                         </View>
                         <View style={ styles.sliderItem }>
