@@ -39,17 +39,22 @@ class Result extends Component {
         let { mortgageAmount, interestRate, mortgageYears } = values;
         let monthlyTotal;
         let mA = parseFloat( mortgageAmount );
-        let iR = parseFloat( interestRate );
-        let mY = parseFloat( mortgageYears );
+        let iR = ( parseFloat( interestRate ) / 12 ) / 100;
+        let mY = parseFloat( mortgageYears ) * 12;
+        let pmt = this.pmt( iR, mY, mA );
 
-        // monthlyTotal = 200000 * (2.2/(12*100)/(1-(1+2.2/(12*100)) ** -(25*12)) )
-        monthlyTotal = mA * ( iR / ( 12 * 100 ) ); // / Math.pow ( ( 1 - ( 1 + iR / ( 12 * 100 ) ) ), -( mY * 12 ) )
-        // let right = -( mY * 12 );
-        // monthlyTotal = Math.pow ( left, right );
-        // monthlyTotal = mortgageAmount + ( mortgageAmount * ( interestRateVal / 100 ) );
-        monthlyTotal = Math.round( monthlyTotal * 100 ) / 100;
+        monthlyTotal = pmt;
+        monthlyTotal = Math.floor( monthlyTotal );
 
         return isNaN(monthlyTotal) === true ? '---' : monthlyTotal;
+    }
+
+    /**
+     * pmt function to calculate monthly payments
+     * @return {[type]} [number]
+     */
+    pmt( interestRate, mortgageMonths, mortgageAmount ) {
+        return mortgageAmount * interestRate * ( Math.pow( 1 + interestRate, mortgageMonths )) / ( Math.pow( 1 + interestRate, mortgageMonths ) - 1 );
     }
 
     render() {

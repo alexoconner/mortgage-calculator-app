@@ -19,9 +19,9 @@ class InputSlider extends Component {
         super( props );
 
         this.state = {
-            mortgageAmount: '',
-            interestRate: '',
-            mortgageYears: '',
+            mortgageAmount: '200000',
+            interestRate: '6.5',
+            mortgageYears: '30',
             sliderPos: new Animated.Value(sliderItemTwoPos),
             currentSlide: SLIDER_STATES.INTEREST_RATE
         };
