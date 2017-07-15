@@ -12,7 +12,7 @@ import {
 
 import { EVENTS, SLIDER_STATES } from '../constants/constants';
 import appDispatcher from '../dispatcher/appDispatcher';
-import { SliderBackground } from './backgrounds';
+import { SliderBackground } from './Backgrounds';
 
 class InputSlider extends Component {
     constructor( props ) {
