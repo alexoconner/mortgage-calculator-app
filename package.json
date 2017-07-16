@@ -8,6 +8,9 @@
     "lint": "eslint ./app",
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "bugs": {
     "url": "https://github.com/alexoconner/mortgage-calculator-app/issues"
   },

@@ -3,27 +3,27 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 
 import { EVENTS } from '../constants/constants';
 import appDispatcher from '../dispatcher/appDispatcher';
 
 class Result extends Component {
-  constructor( props ) {
-    super( props );
+  constructor(props) {
+    super(props);
 
     this.state = {
-      monthlyTotal: ''
+      monthlyTotal: '',
     };
   }
 
   componentDidMount() {
-    appDispatcher.register( ( payload ) => {
+    appDispatcher.register((payload) => {
       console.log(payload);
-      if ( payload.actionType === EVENTS.UPDATE_CALC_VALUES ) {
+      if (payload.actionType === EVENTS.UPDATE_CALC_VALUES) {
         this.setState({
-          monthlyTotal: this.calculateMonthlyTotal( payload.actionValue )
+          monthlyTotal: this.calculateMonthlyTotal(payload.actionValue),
         });
       }
     });
@@ -34,16 +34,16 @@ class Result extends Component {
   * @param  {[type]} values [object]
   * @return {[type]} [string]
   */
-  calculateMonthlyTotal( values ) {
-    let { mortgageAmount, interestRate, mortgageYears } = values;
+  calculateMonthlyTotal(values) {
+    const { mortgageAmount, interestRate, mortgageYears } = values;
     let monthlyTotal;
-    let mA = parseFloat( mortgageAmount );
-    let iR = ( parseFloat( interestRate ) / 12 ) / 100;
-    let mY = parseFloat( mortgageYears ) * 12;
-    let pmt = this.pmt( iR, mY, mA );
+    const mA = parseFloat(mortgageAmount);
+    const iR = (parseFloat(interestRate) / 12) / 100;
+    const mY = parseFloat(mortgageYears) * 12;
+    const pmt = this.pmt(iR, mY, mA);
 
     monthlyTotal = pmt;
-    monthlyTotal = Math.floor( monthlyTotal );
+    monthlyTotal = Math.floor(monthlyTotal);
 
     return isNaN(monthlyTotal) === true ? '---' : monthlyTotal;
   }
@@ -52,19 +52,19 @@ class Result extends Component {
   * pmt function to calculate monthly payments
   * @return {[type]} [number]
   */
-  pmt( interestRate, mortgageMonths, mortgageAmount ) {
-    return mortgageAmount * interestRate * ( Math.pow( 1 + interestRate, mortgageMonths )) / ( Math.pow( 1 + interestRate, mortgageMonths ) - 1 );
+  pmt(interestRate, mortgageMonths, mortgageAmount) {
+    return mortgageAmount * interestRate * (Math.pow(1 + interestRate, mortgageMonths)) / (Math.pow(1 + interestRate, mortgageMonths) - 1);
   }
 
   render() {
     return (
       <View>
-        <Text style={ [styles.font, styles.resultTitle ] }>Monthly Total</Text>
-        <Text style={ [styles.font, styles.resultNumber ] }>
+        <Text style={[styles.font, styles.resultTitle]}>Monthly Total</Text>
+        <Text style={[styles.font, styles.resultNumber]}>
           { this.state.monthlyTotal }
         </Text>
       </View>
-    )
+    );
   }
 }
 
@@ -72,16 +72,16 @@ const styles = StyleSheet.create({
   resultTitle: {
     fontSize: 16,
     textAlign: 'center',
-    marginBottom: 20
+    marginBottom: 20,
   },
   resultNumber: {
     fontSize: 60,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   font: {
     color: '#FFFFFF',
-    fontWeight: '300'
-  }
+    fontWeight: '300',
+  },
 });
 
 export default Result;

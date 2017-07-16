@@ -7,11 +7,11 @@
  */
 
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    AppRegistry
+  AppRegistry
 } from 'react-native';
 
-import App from './app/app';
+import App from './app';
 
 AppRegistry.registerComponent('mortgageCalculatorApp', () => App);
