@@ -8,9 +8,9 @@ import {
   StatusBar,
 } from 'react-native';
 
-import InputSlider from './components/InputSlider.jsx';
-import Keypad from './components/Keypad.jsx';
-import Result from './components/Result.jsx';
+import InputSlider from './components/InputSlider';
+import Keypad from './components/Keypad';
+import Result from './components/Result';
 // import { MainBackground } from './components/backgrounds';
 
 function App() {

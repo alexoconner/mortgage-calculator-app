@@ -21,7 +21,9 @@ class Result extends Component {
   componentDidMount() {
     appDispatcher.register((payload) => {
       console.log(payload);
-      if (payload.actionType === EVENTS.UPDATE_CALC_VALUES) {
+      if (
+        payload.actionType===EVENTS.UPDATE_CALC_VALUES
+      ) {
         this.setState({
           monthlyTotal: this.calculateMonthlyTotal(payload.actionValue),
         });
